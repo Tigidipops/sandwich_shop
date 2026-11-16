@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:sandwich_shop/screens/orders_screen.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:sandwich_shop/screens/menu_screen.dart';
 import 'package:sandwich_shop/constants.dart';
@@ -67,6 +68,7 @@ class App extends StatelessWidget {
         '/': (BuildContext context) => const MenuScreen(),
         '/basket': (BuildContext context) => const BasketScreen(),
         '/settings': (BuildContext context) => const SettingsScreen(),
+        '/orders': (BuildContext context) => const OrdersScreen(),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

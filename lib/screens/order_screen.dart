@@ -5,6 +5,7 @@ import 'package:sandwich_shop/widgets/basket_button.dart';
 import 'package:sandwich_shop/models/cart_item.dart';
 import 'package:sandwich_shop/repositories/cart_repository.dart';
 import 'package:sandwich_shop/widgets/primary_button.dart';
+import 'package:sandwich_shop/widgets/orders_button.dart';
 
 class OrderScreen extends StatefulWidget {
   final Sandwich sandwich;
@@ -65,7 +66,7 @@ class _OrderScreenState extends State<OrderScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(appTitle, style: shopHeaderStyle),
-        actions: const [BasketButton()],
+        actions: const [OrdersButton(), BasketButton()],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
