@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:sandwich_shop/screens/menu_screen.dart';
 import 'package:sandwich_shop/constants.dart';
 import 'package:sandwich_shop/screens/basket_screen.dart';
 import 'package:sandwich_shop/screens/settings_screen.dart';
 
 bool isSupportedPlatform() {
+  if (!kIsWeb && defaultTargetPlatform == TargetPlatform.windows) {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+  }
   if (kIsWeb) {
     return false;
   }
   if (defaultTargetPlatform == TargetPlatform.android) {
     return true;
+  }
+  if (defaultTargetPlatform == TargetPlatform.windows) {
+    return false;
   }
   return false;
 }
