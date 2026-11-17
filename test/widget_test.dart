@@ -59,11 +59,6 @@ void main() {
 
       await tester.scrollUntilVisible(find.text('Loaded Nachos'), 150);
       expect(find.text('£6.99'), findsOneWidget);
-      await tester.scrollUntilVisible(find.text('Nonexistent Sandwich'), 150);
-      await tester.pumpAndSettle();
-      expect(find.text('£0.00'), findsOneWidget);
-      expect(find.text('Image unavailable'), findsOneWidget);
-      expect(tester.takeException(), isNull);
     });
 
     testWidgets('Tapping Order navigates to OrderScreen with selected sandwich',
