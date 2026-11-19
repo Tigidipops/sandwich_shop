@@ -5,11 +5,41 @@ import 'package:sandwich_shop/models/sandwich.dart';
 import 'package:sandwich_shop/screens/menu_screen.dart';
 import 'package:sandwich_shop/screens/order_screen.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
 
 void main() {
   setUp(() {
     rootBundle.clear();
   });
+
+  group('Platform tests', () {
+
+    test('Android is supported', () {
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      expect(isSupportedPlatform(), isTrue);
+      debugDefaultTargetPlatformOverride = null;
+    });
+
+    test('Ohter platforms are not supported', () {
+      debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+      expect(isSupportedPlatform(), isFalse);
+      debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+      expect(isSupportedPlatform(), isFalse);
+      debugDefaultTargetPlatformOverride = TargetPlatform.windows;
+      expect(isSupportedPlatform(), isFalse);
+      debugDefaultTargetPlatformOverride = TargetPlatform.linux;
+      expect(isSupportedPlatform(), isFalse);
+      debugDefaultTargetPlatformOverride = null;
+    });
+
+    testWidgets('The unsupported platfrom screen explains what to do', 
+    (WidgetTester tester) async {
+      await tester.pumpWidget(const UnsupportedPlatformApp());
+      expect(find.textContaining('Android emulator'), findsOneWidget);
+    });
+
+  });
+
   group('OrderItemDisplay widget tests', () {
     testWidgets('displays zero sandwiches with no emoji',
         (WidgetTester tester) async {
